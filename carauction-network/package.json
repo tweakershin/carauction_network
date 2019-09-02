@@ -3,7 +3,7 @@
     "composer": "^0.20.9"
   },
   "name": "carauction-network",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "car_auction을 위한 샘플 네트워크",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/carauction-network.bna",

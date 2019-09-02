@@ -20,7 +20,12 @@ namespace com.betweak.carauction
 
 asset Car identified by vin {
   o String vin
+  o String image
+  o Integer year
+  o String model
+  o String brand
   --> Member owner
+
 }
 
 enum ListingState {
