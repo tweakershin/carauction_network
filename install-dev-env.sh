@@ -6,7 +6,7 @@ npm install -g generator-hyperledger-composer@0.20.8
 npm install -g yo
 npm install -g mkdirp
 
-npm install -g composer-playground@0.20
+npm install -g composer-playground@0.20.8
 
 
 curl -o ~/fabric-dev-servers.tar.gz https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
