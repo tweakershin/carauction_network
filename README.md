@@ -1,3 +1,0 @@
-# carauction_network
-
-no
