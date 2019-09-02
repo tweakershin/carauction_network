@@ -12,34 +12,91 @@
  * limitations under the License.
  */
 
-"use strict";
-/**
- * Write your transction processor functions here
- */
+/* global getAssetRegistry getParticipantRegistry */
 
 /**
- * Sample transaction
- * @param {com.betweak.carauction.SampleTransaction} sampleTransaction
+ * Close the bidding for a car listing and choose the
+ * highest bid that is over the asking price
+ * @param {com.betweak.carauction.CloseBidding} closeBidding - the closeBidding transaction
  * @transaction
  */
-async function sampleTransaction(tx) {
-  // Save the old value of the asset.
-  const oldValue = tx.asset.value;
+async function closeBidding(closeBidding) {
+  // eslint-disable-line no-unused-vars
+  const listing = closeBidding.listing;
+  if (listing.state !== "FOR_SALE") {
+    throw new Error("Listing is not FOR SALE");
+  }
+  // by default we mark the listing as RESERVE_NOT_MET
+  listing.state = "RESERVE_NOT_MET";
+  let highestOffer = null;
+  let buyer = null;
+  let seller = null;
+  if (listing.offers && listing.offers.length > 0) {
+    // sort the bids by bidPrice
+    listing.offers.sort(function(a, b) {
+      return b.bidPrice - a.bidPrice;
+    });
+    highestOffer = listing.offers[0];
+    if (highestOffer.bidPrice >= listing.reservePrice) {
+      // mark the listing as SOLD
+      listing.state = "SOLD";
+      buyer = highestOffer.member;
+      seller = listing.car.owner;
+      // update the balance of the seller
+      console.log("#### seller balance before: " + seller.balance);
+      seller.balance += highestOffer.bidPrice;
+      console.log("#### seller balance after: " + seller.balance);
+      // update the balance of the buyer
+      console.log("#### buyer balance before: " + buyer.balance);
+      buyer.balance -= highestOffer.bidPrice;
+      console.log("#### buyer balance after: " + buyer.balance);
+      // transfer the car to the buyer
+      listing.car.owner = buyer;
+      // clear the offers
+      listing.offers = null;
+    }
+  }
 
-  // Update the asset with the new value.
-  tx.asset.value = tx.newValue;
+  if (highestOffer) {
+    // save the car
+    const carRegistry = await getAssetRegistry("com.betweak.carauction.car");
+    await carRegistry.update(listing.car);
+  }
 
-  // Get the asset registry for the asset.
-  const assetRegistry = await getAssetRegistry(
-    "com.betweak.carauction.SampleAsset"
+  // save the car listing
+  const carListingRegistry = await getAssetRegistry(
+    "com.betweak.carauction.carListing"
   );
-  // Update the asset in the asset registry.
-  await assetRegistry.update(tx.asset);
+  await carListingRegistry.update(listing);
 
-  // Emit an event for the modified asset.
-  let event = getFactory().newEvent("com.betweak.carauction", "SampleEvent");
-  event.asset = tx.asset;
-  event.oldValue = oldValue;
-  event.newValue = tx.newValue;
-  emit(event);
+  if (listing.state === "SOLD") {
+    // save the buyer
+    const userRegistry = await getParticipantRegistry(
+      "com.betweak.carauction.Member"
+    );
+    await userRegistry.updateAll([buyer, seller]);
+  }
+}
+
+/**
+ * Make an Offer for a carListing
+ * @param {com.betweak.carauction.Offer} offer - the offer
+ * @transaction
+ */
+async function makeOffer(offer) {
+  // eslint-disable-line no-unused-vars
+  let listing = offer.listing;
+  if (listing.state !== "FOR_SALE") {
+    throw new Error("Listing is not FOR SALE");
+  }
+  if (!listing.offers) {
+    listing.offers = [];
+  }
+  listing.offers.push(offer);
+
+  // save the car listing
+  const carListingRegistry = await getAssetRegistry(
+    "com.betweak.carauction.carListing"
+  );
+  await carListingRegistry.update(listing);
 }

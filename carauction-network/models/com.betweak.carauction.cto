@@ -18,25 +18,45 @@
 
 namespace com.betweak.carauction
 
-participant SampleParticipant identified by participantId {
-  o String participantId
+asset Car identified by vin {
+  o String vin
+  --> Member owner
+}
+
+enum ListingState {
+  o FOR_SALE
+  o RESERVE_NOT_MET
+  o SOLD
+}
+
+asset CarListing identified by listingId {
+  o String listingId
+  o Double reservePrice
+  o String description
+  o ListingState state
+  o Offer[] offers optional
+  --> Car car
+}
+
+abstract participant User identified by email {
+  o String email
   o String firstName
   o String lastName
 }
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  --> SampleParticipant owner
-  o String value
+participant Member extends User {
+  o Double balance
 }
 
-transaction SampleTransaction {
-  --> SampleAsset asset
-  o String newValue
+participant Auctioneer extends User {
 }
 
-event SampleEvent {
-  --> SampleAsset asset
-  o String oldValue
-  o String newValue
+transaction Offer {
+  o Double bidPrice
+  --> CarListing listing
+  --> Member member
+}
+
+transaction CloseBidding {
+  --> CarListing listing
 }

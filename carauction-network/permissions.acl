@@ -13,39 +13,48 @@
  */
 
 /**
- * Sample access control list.
+ * Access Control List for the auction network.
  */
-rule EverybodyCanReadEverything {
-    description: "Allow all participants read access to all resources"
-    participant: "com.betweak.carauction.SampleParticipant"
+rule Auctioneer {
+    description: "Allow the auctioneer full access"
+    participant: "com.betweak.carauction.Auctioneer"
+    operation: ALL
+    resource: "com.betweak.carauction.*"
+    action: ALLOW
+}
+
+rule Member {
+    description: "Allow the member read access"
+    participant: "com.betweak.carauction.Member"
     operation: READ
     resource: "com.betweak.carauction.*"
     action: ALLOW
 }
 
-rule EverybodyCanSubmitTransactions {
-    description: "Allow all participants to submit transactions"
-    participant: "com.betweak.carauction.SampleParticipant"
-    operation: CREATE
-    resource: "com.betweak.carauction.SampleTransaction"
+rule CarOwner {
+    description: "Allow the owner of a car total access"
+    participant(m): "com.betweak.carauction.Member"
+    operation: ALL
+    resource(c): "com.betweak.carauction.Car"
+    condition: (c.owner.getIdentifier() == m.getIdentifier())
     action: ALLOW
 }
 
-rule OwnerHasFullAccessToTheirAssets {
-    description: "Allow all participants full access to their assets"
-    participant(p): "com.betweak.carauction.SampleParticipant"
+rule CarListingOwner {
+    description: "Allow the owner of a car total access to their car listing"
+    participant(m): "com.betweak.carauction.Member"
     operation: ALL
-    resource(r): "com.betweak.carauction.SampleAsset"
-    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    resource(c): "com.betweak.carauction.CarListing"
+    condition: (c.car.owner.getIdentifier() == m.getIdentifier())
     action: ALLOW
 }
 
 rule SystemACL {
-  description:  "System ACL to permit all access"
-  participant: "org.hyperledger.composer.system.Participant"
-  operation: ALL
-  resource: "org.hyperledger.composer.system.**"
-  action: ALLOW
+    description:  "System ACL to permit all access"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
 }
 
 rule NetworkAdminUser {
