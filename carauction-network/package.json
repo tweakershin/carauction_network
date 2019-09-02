@@ -8,6 +8,7 @@
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/carauction-network.bna",
     "pretest": "npm run lint",
+    "network_install": "composer network install --card PeerAdmin@hlfv1 --archiveFile ./dist/carauction-network.bna",
     "lint": "eslint .",
     "test": "nyc mocha -t 0 test/*.js && cucumber-js"
   },
@@ -19,12 +20,12 @@
   "email": "ys@betweak.com",
   "license": "Apache-2.0",
   "devDependencies": {
-    "composer-admin": "^0.20.9",
-    "composer-cli": "^0.20.9",
-    "composer-client": "^0.20.9",
-    "composer-common": "^0.20.9",
-    "composer-connector-embedded": "^0.20.9",
-    "composer-cucumber-steps": "^0.20.9",
+    "composer-admin": "^0.20.8",
+    "composer-cli": "^0.20.8",
+    "composer-client": "^0.20.8",
+    "composer-common": "^0.20.8",
+    "composer-connector-embedded": "^0.20.8",
+    "composer-cucumber-steps": "^0.20.8",
     "chai": "latest",
     "chai-as-promised": "latest",
     "cucumber": "^2.2.0",
