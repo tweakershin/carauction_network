@@ -24,8 +24,6 @@ rule Auctioneer {
     action: ALLOW
 }
 
-
-
 rule Member {
     description: "Allow the member read access"
     participant: "com.betweak.carauction.Member"
@@ -38,8 +36,8 @@ rule CarOwner {
     description: "Allow the owner of a car total access"
     participant(m): "com.betweak.carauction.Member"
     operation: ALL
-    resource(v): "com.betweak.carauction.Car"
-    condition: (v.owner.getIdentifier() == m.getIdentifier())
+    resource(c): "com.betweak.carauction.Car"
+    condition: (c.owner.getIdentifier() == m.getIdentifier())
     action: ALLOW
 }
 
@@ -47,8 +45,8 @@ rule CarListingOwner {
     description: "Allow the owner of a vehicle total access to their vehicle listing"
     participant(m): "com.betweak.carauction.Member"
     operation: ALL
-    resource(v): "com.betweak.carauction.CarListing"
-    condition: (v.car.owner.getIdentifier() == m.getIdentifier())
+    resource(c): "com.betweak.carauction.CarListing"
+    condition: (c.car.owner.getIdentifier() == m.getIdentifier())
     action: ALLOW
 }
 
