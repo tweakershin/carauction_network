@@ -1,0 +1,64 @@
+{
+  "name": "CarListing",
+  "description": "An asset named CarListing",
+  "plural": "CarListing",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "composer": {
+      "type": "asset",
+      "namespace": "com.betweak.carauction",
+      "name": "CarListing",
+      "fqn": "com.betweak.carauction.CarListing",
+      "abstract": false
+    }
+  },
+  "properties": {
+    "$class": {
+      "type": "string",
+      "default": "com.betweak.carauction.CarListing",
+      "required": false,
+      "description": "The class identifier for this type"
+    },
+    "listingId": {
+      "type": "string",
+      "id": true,
+      "description": "The instance identifier for this type",
+      "required": true
+    },
+    "reservePrice": {
+      "type": "number",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "FOR_SALE",
+        "RESERVE_NOT_MET",
+        "SOLD"
+      ],
+      "required": true
+    },
+    "offers": {
+      "type": [
+        "Offer"
+      ],
+      "default": [],
+      "required": false
+    },
+    "car": {
+      "type": "any",
+      "description": "The identifier of an instance of car",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

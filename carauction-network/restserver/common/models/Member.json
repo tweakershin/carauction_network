@@ -1,0 +1,47 @@
+{
+  "name": "Member",
+  "description": "A participant named Member",
+  "plural": "Member",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "composer": {
+      "type": "participant",
+      "namespace": "com.betweak.carauction",
+      "name": "Member",
+      "fqn": "com.betweak.carauction.Member",
+      "abstract": false
+    }
+  },
+  "properties": {
+    "$class": {
+      "type": "string",
+      "default": "com.betweak.carauction.Member",
+      "required": false,
+      "description": "The class identifier for this type"
+    },
+    "balance": {
+      "type": "number",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "id": true,
+      "description": "The instance identifier for this type",
+      "required": true
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

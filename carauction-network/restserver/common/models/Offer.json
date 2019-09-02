@@ -1,0 +1,55 @@
+{
+  "name": "Offer",
+  "description": "A transaction named Offer",
+  "plural": "Offer",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "composer": {
+      "type": "transaction",
+      "namespace": "com.betweak.carauction",
+      "name": "Offer",
+      "fqn": "com.betweak.carauction.Offer",
+      "abstract": false
+    }
+  },
+  "properties": {
+    "$class": {
+      "type": "string",
+      "default": "com.betweak.carauction.Offer",
+      "required": false,
+      "description": "The class identifier for this type"
+    },
+    "bidPrice": {
+      "type": "number",
+      "required": true
+    },
+    "listing": {
+      "type": "any",
+      "description": "The identifier of an instance of listing",
+      "required": true
+    },
+    "member": {
+      "type": "any",
+      "description": "The identifier of an instance of member",
+      "required": true
+    },
+    "transactionId": {
+      "type": "string",
+      "id": true,
+      "description": "The instance identifier for this type",
+      "required": false,
+      "generated": true
+    },
+    "timestamp": {
+      "type": "date",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": [],
+  "forceId": true
+}

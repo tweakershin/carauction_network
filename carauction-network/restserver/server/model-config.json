@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "System": {
+    "dataSource": "composer",
+    "public": true
+  },
+  "PingResponse": {
+    "dataSource": "composer",
+    "public": false
+  },
+  "Car": {
+    "dataSource": "composer",
+    "public": true
+  },
+  "CarListing": {
+    "dataSource": "composer",
+    "public": true
+  },
+  "Member": {
+    "dataSource": "composer",
+    "public": true
+  },
+  "Auctioneer": {
+    "dataSource": "composer",
+    "public": true
+  },
+  "Offer": {
+    "dataSource": "composer",
+    "public": true
+  },
+  "CloseBidding": {
+    "dataSource": "composer",
+    "public": true
+  }
+}

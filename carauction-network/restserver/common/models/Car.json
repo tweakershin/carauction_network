@@ -1,0 +1,40 @@
+{
+  "name": "Car",
+  "description": "An asset named Car",
+  "plural": "Car",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "composer": {
+      "type": "asset",
+      "namespace": "com.betweak.carauction",
+      "name": "Car",
+      "fqn": "com.betweak.carauction.Car",
+      "abstract": false
+    }
+  },
+  "properties": {
+    "$class": {
+      "type": "string",
+      "default": "com.betweak.carauction.Car",
+      "required": false,
+      "description": "The class identifier for this type"
+    },
+    "vin": {
+      "type": "string",
+      "id": true,
+      "description": "The instance identifier for this type",
+      "required": true
+    },
+    "owner": {
+      "type": "any",
+      "description": "The identifier of an instance of owner",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

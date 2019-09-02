@@ -1,0 +1,43 @@
+{
+  "name": "Auctioneer",
+  "description": "A participant named Auctioneer",
+  "plural": "Auctioneer",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true,
+    "composer": {
+      "type": "participant",
+      "namespace": "com.betweak.carauction",
+      "name": "Auctioneer",
+      "fqn": "com.betweak.carauction.Auctioneer",
+      "abstract": false
+    }
+  },
+  "properties": {
+    "$class": {
+      "type": "string",
+      "default": "com.betweak.carauction.Auctioneer",
+      "required": false,
+      "description": "The class identifier for this type"
+    },
+    "email": {
+      "type": "string",
+      "id": true,
+      "description": "The instance identifier for this type",
+      "required": true
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
