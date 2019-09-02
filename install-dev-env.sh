@@ -1,4 +1,7 @@
 source ~/.bashrc
+source ~/.bashrc
+
+
 
 npm install -g composer-cli@0.20.8
 npm install -g composer-rest-server@0.20.8
@@ -14,5 +17,9 @@ mkdir ~/fabric-dev-servers
 tar -xvf fabric-dev-servers.tar.gz -C ~/fabric-dev-servers 
 
 export FABRIC_VERSION=hlfv12
+export FABRIC_START_TIMEOUT=30
+
 ~/fabric-dev-servers/downloadFabric.sh
+source ~/.bashrc
+
 
