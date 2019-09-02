@@ -94,4 +94,7 @@ dist
 
 *.card
 
+**/restsetver/*
+
 envvar.txt
+**/envvar.txt
