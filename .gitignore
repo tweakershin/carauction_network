@@ -93,3 +93,5 @@ dist
 *.bna
 
 *.card
+
+envvar.txt
