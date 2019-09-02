@@ -8,7 +8,7 @@
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/carauction-network.bna",
     "pretest": "npm run lint",
-    "network_install": "composer network install --card PeerAdmin@hlfv1 --archiveFile ./dist/carauction-network.bna",
+    "network_install": "composer network install --archiveFile ./dist/carauction-network.bna --card PeerAdmin@hlfv1 ",
     "network_start": "composer network start --networkName carauction-network  --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card --networkVersion ",
     "lint": "eslint .",
     "test": "nyc mocha -t 0 test/*.js && cucumber-js"
