@@ -9,9 +9,12 @@ npm install -g generator-hyperledger-composer@0.20.8
 npm install -g yo
 npm install -g mkdirp
 npm install -g passport-facebook
+npm install -g passport-github
+npm install -g passport
+npm install -g passport-google
 
 npm install -g composer-playground@0.20.8
-
+npm install -g loopback-connector-mongodb
 
 curl -o ~/fabric-dev-servers.tar.gz https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
 mkdir ~/fabric-dev-servers
