@@ -8,6 +8,7 @@ npm install -g composer-rest-server@0.20.8
 npm install -g generator-hyperledger-composer@0.20.8
 npm install -g yo
 npm install -g mkdirp
+npm install -g passport-facebook
 
 npm install -g composer-playground@0.20.8
 
