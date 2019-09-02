@@ -14,7 +14,8 @@
     "network_upgrade": "composer network upgrade -c PeerAdmin@hlfv1 -n carauction-network -V $npm_package_version",
     "lint": "eslint .",
     "test": "nyc mocha -t 0 test/*.js && cucumber-js",
-    "rest_server": "nohup composer-rest-server -c admin@carauction-network -n never -a true -m true -u true -w true > rest-server.out 2> rest-server.err < /dev/null &"
+    "rest_server": "nohup composer-rest-server -c admin@carauction-network -n never -a true -m true -u true -w true > rest-server.out 2> rest-server.err < /dev/null &",
+    "stop_rest_server": "kill -9 `ps aux | grep composer-rest-server | awk '{print $2}'`"
   },
   "keywords": [
     "composer",
