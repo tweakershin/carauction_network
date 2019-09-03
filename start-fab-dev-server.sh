@@ -1,6 +1,6 @@
 source ~/.bashrc
 
-export FABRIC_VERSION=hlfv12
+export FABRIC_VERSION=hlfv1
 export FABRIC_START_TIMEOUT=30
 
 ~/fabric-dev-servers/startFabric.sh 

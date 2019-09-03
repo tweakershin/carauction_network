@@ -20,7 +20,7 @@ curl -o ~/fabric-dev-servers.tar.gz https://raw.githubusercontent.com/hyperledge
 mkdir ~/fabric-dev-servers
 tar -xvf fabric-dev-servers.tar.gz -C ~/fabric-dev-servers 
 
-export FABRIC_VERSION=hlfv12
+export FABRIC_VERSION=hlfv1
 export FABRIC_START_TIMEOUT=30
 
 ~/fabric-dev-servers/downloadFabric.sh
